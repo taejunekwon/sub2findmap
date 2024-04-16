@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부분취소 계산기</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 150px; 
+        }
+
+        input[type="number"] {
+            width: 200px; 
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100px; 
+            margin-top: 10px; 
+
+        }
+
+     .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        header {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s; 
+}
+
+nav a:hover {
+    background-color: #555; 
+}
+
+
+    </style>
+</head>
+<body>
+   <div class="header-container">
+        <header>부분취소 계산기</header>
+<nav>
+        <a href="https://main.findyangpa.site/">홈으로 이동</a>
+        <a href="https://sub.findyangpa.site/">조치방법 확인</a>
+        <a href="https://www.findyangpa.site/">공업사 찾기</a>
+        <a href="https://serchs.findyangpa.site/">하급 대차 계산기</a>
+    </nav>
+</div>
+
+<br>
+<br>
+    <label for="rentPeriod">총 대여기간:</label>
+    <input type="number" id="rentPeriod"><br>
+    <label for="refundTime">환불 시간:</label>
+    <input type="number" id="refundTime"><br>
+    <label for="rentFee">대여료:</label>
+    <input type="number" id="rentFee"><br>
+    <label for="insuranceFee">보험료:</label>
+    <input type="number" id="insuranceFee"><br>
+    <label for="driverInsurance">AXA 운전자 보험:</label>
+    <input type="number" id="driverInsurance"> >> 없을 경우 0 입력 필요<br>
+    <label for="couponDiscount">쿠폰 할인 금액:</label>
+    <input type="number" id="couponDiscount"><br>
+    <button onclick="calculateTotal()">계산하기</button><br>
+    <div id="result"></div>
+
+    <script>
+        function calculateTotal() {
+            const rentPeriod = parseFloat(document.getElementById('rentPeriod').value);
+            const refundTime = parseFloat(document.getElementById('refundTime').value);
+            const rentFee = parseFloat(document.getElementById('rentFee').value);
+            const insuranceFee = parseFloat(document.getElementById('insuranceFee').value);
+            const driverInsurance = parseFloat(document.getElementById('driverInsurance').value);
+            const couponDiscount = parseFloat(document.getElementById('couponDiscount').value);
+
+            
+            const result = ((rentFee + insuranceFee + driverInsurance - couponDiscount) / rentPeriod) * refundTime;
+
+            
+            document.getElementById('result').innerText = `최종 대여료: ${result}`;
+        }
+    </script>
+</body>
+</html>
